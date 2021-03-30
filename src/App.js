@@ -1,20 +1,17 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import Avatar from './components/Avatar'
-import Details from './components/Details'
-import Search from './components/Search'
-import Grid from './components/Grid'
+import Employee from './components/Employee'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
 
 function App() {
   const [user, setUser] = useState({})
-  const [username, setUsername] = useState('matthayden09')
 
   useEffect(() => fetchUser(), [])
 
   const fetchUser = async () => {
     try {
-      const { data } = await axios(`https://api.github.com/users/${username}`)
+      const { data } = await axios(`https://randomuser.me/api/?results=20`)
       setUser(data)
       console.log(data)
     } catch (err) {
@@ -22,24 +19,13 @@ function App() {
     }
   }
 
-  const handleSubmit = e => {
-    e.preventDefault()
-    setUsername(username)
-    fetchUser()
-  }
-
-
   return (
     <div className="App">
-      <header className="App-header">
-        <Search
-          username={username} setUsername={setUsername}
-          handleSubmit={handleSubmit} />
-        <Grid>
-          <Avatar {...user} />
-          <Details {...user} />
-        </Grid>
-      </header>
+      {/* <header className="App-header"> */}
+
+        <Employee {...user} />
+
+      {/* </header> */}
     </div>
   );
 }
