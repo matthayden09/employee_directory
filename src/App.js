@@ -3,6 +3,7 @@ import axios from 'axios'
 import Avatar from './components/Avatar'
 import Details from './components/Details'
 import Search from './components/Search'
+import Grid from './components/Grid'
 import './App.css';
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
   const fetchUser = async () => {
     const { data } = await axios(`https://api.github.com/users/matthayden09`)
     setUser(data)
+    console.log(data)
   }
 
   const handleSubmit = e => {
@@ -28,8 +30,10 @@ function App() {
         <Search
           username={username} setUsername={setUsername}
           handleSubmit={handleSubmit} />
+          <Grid>
         <Avatar {...user} />
         <Details {...user} />
+        </Grid>
       </header>
     </div>
   );
