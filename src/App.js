@@ -13,14 +13,19 @@ function App() {
   useEffect(() => fetchUser(), [])
 
   const fetchUser = async () => {
-    const { data } = await axios(`https://api.github.com/users/matthayden09`)
-    setUser(data)
-    console.log(data)
+    try {
+      const { data } = await axios(`https://api.github.com/users/${username}`)
+      setUser(data)
+      console.log(data)
+    } catch (err) {
+      alert('user not found')
+    }
   }
 
   const handleSubmit = e => {
     e.preventDefault()
-    console.log(username)
+    setUsername(username)
+    fetchUser()
   }
 
 
@@ -30,9 +35,9 @@ function App() {
         <Search
           username={username} setUsername={setUsername}
           handleSubmit={handleSubmit} />
-          <Grid>
-        <Avatar {...user} />
-        <Details {...user} />
+        <Grid>
+          <Avatar {...user} />
+          <Details {...user} />
         </Grid>
       </header>
     </div>
