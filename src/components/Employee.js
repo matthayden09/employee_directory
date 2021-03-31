@@ -1,8 +1,9 @@
 import React from "react";
 
+
 function Employee(props) {
     return (
-        <tr className="tableRow">
+        <tr>
             <th scope="row">{props.employeeKey}</th>
             <td><img alt={props.firstName} src={props.image} /></td>
             <td>{props.firstName}</td>
